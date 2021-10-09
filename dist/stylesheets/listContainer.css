@@ -1,0 +1,84 @@
+@font-face {
+    font-family: Official;
+    src: url(../fonts/OfficialBook.ttf);
+}
+
+#list-container{
+    flex-grow: 9;
+    background-color: #fffde1;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    padding: 1em 0;
+}
+
+#task-list{
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    list-style-type: none;
+}
+
+.task{
+    border: 1px solid #ff8181;
+    border-radius: 10px;
+    display: flex;
+    gap: 1em;
+    padding: .5em 1em;
+    margin-bottom: 1em;
+}
+
+.task-check{
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid #409eff;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.task-check > i{
+    display: none;
+}
+
+.task-check:hover > i{
+    display: inline-block;
+}
+
+.task-info{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-family: Official;
+}
+
+.task-title{
+    font-size: 18px;
+}
+
+.task-description{
+    font-size: 14px;
+}
+
+.task-date{
+    font-size: 14px;
+}
+
+.task-edit{
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    align-self: flex-start;
+}
+
+#add-task > button{
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    padding: .5em 0;
+    background-color: #409eff;
+    font-family: Official;
+    font-size: 18px;
+}

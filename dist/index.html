@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="./stylesheets/index.css">
+    <link rel="stylesheet" href="./stylesheets/nav.css">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="./stylesheets/sidebar.css">
+    <link rel="stylesheet" href="./stylesheets/listContainer.css">
+</head>
+<body>
+    <nav>
+        <h1>Todo</h1>
+    </nav>
+    <main>
+        <div id="sidebar">
+            <button id="add-project" class="sidebar-btn">Add Project</button>
+            <button class="sidebar-btn">Inbox</button>
+        </div>
+        <div id="list-container">
+            <ul id="task-list">
+                <li class="task">
+                    <button class="task-check">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <div class="task-info">
+                        <span class="task-title">Title</span>
+                        <span class="task-description">Description</span>
+                        <span class="task-date">2020-12-12</span>
+                    </div>
+                    <button class="task-edit">
+                        <i class="far fa-edit"></i>
+                    </button>
+                </li>
+                <li id="add-task">
+                    <button>
+                        Add Task
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
