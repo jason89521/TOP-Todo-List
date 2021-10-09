@@ -1,0 +1,32 @@
+@font-face {
+    font-family: Official;
+    src: url(../fonts/OfficialBook.ttf);
+}
+
+#sidebar{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #a7d5fd;
+    gap: 1em;
+    padding: 1em;
+}
+
+#add-project{
+    background-color: #409eff;
+}
+
+.sidebar-btn{
+    cursor: pointer;
+    outline: none;
+    background: none;
+    padding: 0.5em 0;
+    border: 1px solid #409eff;
+    border-radius: 10px;
+    font-family: Official;
+    font-size: large;
+}
+
+.sidebar-btn:hover{
+    background-color: azure;
+}
