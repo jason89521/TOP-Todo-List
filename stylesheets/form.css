@@ -56,4 +56,5 @@
 
 input[name="priority"]{
     margin: 0;
+    outline: none;
 }

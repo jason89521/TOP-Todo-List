@@ -32,7 +32,7 @@
             <div id="list-container">
                 <h1 id="project-title">Inbox</h1>
                 <ul id="task-list">
-                    <li class="task">
+                    <!-- <li class="task">
                         <button class="task-check">
                             <i class="fas fa-check"></i>
                         </button>
@@ -44,7 +44,7 @@
                         <button class="task-edit">
                             <i class="far fa-edit"></i>
                         </button>
-                    </li>
+                    </li> -->
                     <li id="add-task">
                         <button data-action="add">
                             Add Task
@@ -53,13 +53,13 @@
                 </ul>
                 <form id="task-form">
                     <label for="title-input">Title</label>
-                    <input type="text" id="title-input" autocomplete="off">
+                    <input name="title" type="text" id="title-input" autocomplete="off">
 
                     <label for="description-input">Description</label>
-                    <textarea id="description-input" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="description-input" cols="30" rows="10"></textarea>
 
                     <label for="date-input">Due Date</label>
-                    <input type="date" id="date-input">
+                    <input name="date" type="date" id="date-input">
 
                     <span>Priority</span>
                     <div id="priority-inputs">
