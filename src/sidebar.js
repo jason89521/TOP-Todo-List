@@ -72,7 +72,8 @@ sidebar.addEventListener('click', async e => {
             return;
         // Update the project element.
         projectToBeEdited.dataset.project = newProjectName;
-        projectToBeEdited.querySelector('span').innerText = newProjectName
+        projectToBeEdited.querySelector('span').innerText = newProjectName;
+        projectToBeEdited.querySelector('span').dataset.project = newProjectName;
         updateItem(projectsKey, value => value === originProjectName, newProjectName);
         updateItemsProperty(tasksKey, value => value.projectName === originProjectName, 'projectName', newProjectName);
         // If the edited project is the selected project, update the project title.

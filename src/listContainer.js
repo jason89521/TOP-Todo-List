@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import Task from "./methods/task";
-import { createItem, readItem } from "./methods/storage";
+import { createItem, readItem, updateItem, updateItemsProperty, deleteItem } from "./methods/storage";
 import { resetTaskList } from "./methods/display";
 const tasksKey = 'tasks'
 const taskList = document.getElementById('task-list');
@@ -17,25 +17,43 @@ resetTaskList(taskList, addTaskLi, 'Inbox');
 
 taskList.addEventListener('click', async e => {
     const action = e.target.dataset.action;
-    if(action === 'add') {
-        const swalResult = await Swal.fire({
-            html: form,
-            preConfirm: () => {
-                const elements = form.elements;
-                if(!(/\S/.test(elements['title'].value)))
-                    Swal.showValidationMessage('Please enter the title!');
-            }
-        })
-        
-        if(swalResult.value) {
-            const title = form.elements['title'].value;
-            const description = form.elements['description'].value;
-            const date = form.elements['date'].value;
-            const priority = form.elements['priority'].value;
-            const projectName = projectTitle.innerText;
-            const newTask = new Task(title, description, date, priority, projectName);
-            taskList.insertBefore(newTask.createTaskElement(), addTaskLi);
-            createItem(tasksKey, newTask);
-        }
+    if(action === 'delete') {
+        const liToBeDeleted = getLiFromChild(e.target);
+        liToBeDeleted.remove();
+        const id = parseInt(liToBeDeleted.dataset.id, 10);
+        deleteItem(tasksKey, value => value.id === id);
     }
 });
+
+addTaskLi.addEventListener('click', async e => {
+    const swalResult = await Swal.fire({
+        html: form,
+        preConfirm: () => {
+            const elements = form.elements;
+            if(!(/\S/.test(elements['title'].value)))
+                Swal.showValidationMessage('Please enter the title!');
+        }
+    })
+    
+    if(swalResult.value) {
+        const title = form.elements['title'].value;
+        const description = form.elements['description'].value;
+        const date = form.elements['date'].value;
+        const priority = form.elements['priority'].value;
+        const projectName = projectTitle.innerText;
+        const newTask = new Task(title, description, date, priority, projectName);
+        taskList.insertBefore(newTask.createTaskElement(), addTaskLi);
+        createItem(tasksKey, newTask);
+    }
+})
+
+/**
+ * @param {HTMLElement} child 
+ */
+function getLiFromChild(child) {
+    let li = child;
+    while(li.tagName.toLowerCase() !== 'li') {
+        li = li.parentNode;
+    }
+    return li
+}

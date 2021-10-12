@@ -7,10 +7,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1;
     background-color: #a7d5fd;
     gap: 1em;
     padding: 1em 2em;
+    width: 15em;
 }
 
 #add-project{
@@ -35,6 +35,7 @@
     background: none;
     text-align: center;
     padding: 0.5em;
+    padding-right: 1.5em;
     border: 1px solid #409eff;
     border-radius: 10px;
     font-family: Official;
@@ -44,10 +45,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: .5em;
 }
 
 .sidebar-btn:hover{
     background-color: #f0ffff;
+}
+
+.sidebar-btn > span{
+    max-width: 10em;
+    overflow: hidden;
 }
 
 .selected-project{

@@ -87,6 +87,7 @@ function updateItemsProperty(key, predicate, propertyName, propertyValue) {
 function deleteItem(key, predicate) {
     const items = parse(key);
     let idx = items.findIndex(predicate);
+    console.log(idx);
     while(idx != -1) {
         items.splice(idx, 1);
         idx = items.findIndex(predicate);
