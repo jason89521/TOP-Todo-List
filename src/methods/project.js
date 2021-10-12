@@ -14,7 +14,7 @@ function createProjectElement(projectName) {
     const project = document.createElement('div');
     project.classList.add('sidebar-btn');
     project.dataset.project = projectName;
-    project.innerHTML = `<span>${projectName}</span>`;
+    project.innerHTML = `<span data-project="${projectName}">${projectName}</span>`;
     if(projectName === 'Inbox') return project;
 
     const div = document.createElement('div');

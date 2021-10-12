@@ -1,0 +1,59 @@
+@font-face {
+    font-family: Official;
+    src: url(../fonts/OfficialBook.ttf);
+}
+
+#task-form{
+    display: flex;
+    flex-direction: column;
+}
+
+#task-form > * {
+    text-align: start;
+    font-family: Official;
+    font-size: 18px;
+}
+
+#task-form > label, #task-form > span{
+    font-size: 24px;
+}
+
+#task-form > input, #task-form > textarea{
+    outline: none;
+    padding: .5em;
+    border: 3px solid #545454;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+#description-input{
+    resize: none;
+}
+
+#priority-inputs{
+    display: flex;
+    gap: 1em;
+}
+
+#priority-inputs > label{
+    flex-grow: 1;
+    border-radius: 10px;
+    padding-top: .25em;
+    padding-left: .5em;
+}
+
+#high-div{
+    border: 3px solid #ff8181;
+}
+
+#medium-div{
+    border: 3px solid #ffee00;
+}
+
+#low-div{
+    border: 3px solid #33ff33;
+}
+
+input[name="priority"]{
+    margin: 0;
+}
