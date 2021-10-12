@@ -30,18 +30,6 @@ function createProjectElement(projectName) {
     return project;
 }
 
-function getProjectNameList(key) {
-    const foo = localStorage.getItem(key);
-    if(foo) {
-        const projectNameList = foo.split(',');
-        return projectNameList
-    }else {
-        const projectNameList = ['Inbox']
-        localStorage.setItem(key, projectNameList)
-        return projectNameList;
-    }
-}
-
 /**
  * @param {HTMLElement} child 
  */
@@ -52,5 +40,5 @@ function getProjectFromChild(child){
     return project;
 }
 
-export {changeSelectedProject, createProjectElement, getProjectNameList,
+export {changeSelectedProject, createProjectElement,
     getProjectFromChild};

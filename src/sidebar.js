@@ -1,17 +1,23 @@
 import Swal from "sweetalert2";
-import { changeSelectedProject, createProjectElement, getProjectFromChild, 
-    getProjectNameList } from "./methods/project";
+import { changeSelectedProject, createProjectElement, getProjectFromChild } from "./methods/project";
+import { createItem, deleteItem, readItem, updateItem } from "./methods/storage";
 const projectTitle = document.getElementById('project-title');
 const sidebar = document.getElementById('sidebar');
-const projectKey = 'projectNameList';
-const projectNameList = getProjectNameList(projectKey);
+const projectsKey = 'projects';
 
 // Initialize the sidebar.
-projectNameList.forEach(projectName => {
-    const project = createProjectElement(projectName);
-    if (projectName === 'Inbox') project.classList.add('selected-project');
-    sidebar.append(project);
-});
+initialize();
+function initialize() {
+    if (readItem(projectsKey).length === 0)
+        createItem(projectsKey, 'Inbox');
+
+    readItem(projectsKey).forEach(projectName => {
+        const projectElement = createProjectElement(projectName);
+        if (projectName === 'Inbox')
+            projectElement.classList.add('selected-project');
+        sidebar.append(projectElement);
+    });
+}
 
 // Handle click event on sidebar.
 sidebar.addEventListener('click', async e => {
@@ -29,7 +35,7 @@ sidebar.addEventListener('click', async e => {
                 if (!value || !(/\S/.test(value))) {
                     return 'The project name is not accepted.'
                 }
-                if (projectNameList.includes(value)) {
+                if (readItem(projectsKey).includes(value)) {
                     return 'The project name already exists!';
                 }
             }
@@ -39,9 +45,7 @@ sidebar.addEventListener('click', async e => {
         // Append the new project to sidebar.
         const newProject = createProjectElement(newProjectName);
         sidebar.append(newProject);
-        // Update the projectNameList and localStorage.
-        projectNameList.push(newProjectName);
-        localStorage.setItem(projectKey, projectNameList);
+        createItem(projectsKey, newProjectName);
     } else if (action === 'edit') {
         const projectToBeEdited = getProjectFromChild(e.target);
         const originProjectName = projectToBeEdited.dataset.project;
@@ -52,37 +56,30 @@ sidebar.addEventListener('click', async e => {
                 if (!value || !(/\S/.test(value))) {
                     return 'The project name is not accepted.'
                 }
-                if (value !== originProjectName && projectNameList.includes(value)) {
+                if (value !== originProjectName && readItem(projectsKey).includes(value)) {
                     return 'The project name already exists!';
                 }
             }
         });
         // If user did not enter a project name, or the new project name is the same as origin.
-        if(!newProjectName || newProjectName === originProjectName)
+        if (!newProjectName || newProjectName === originProjectName)
             return;
         // Update the project element.
         projectToBeEdited.dataset.project = newProjectName;
         projectToBeEdited.querySelector('span').innerText = newProjectName
-        // Update projectNameList and localStorage.
-        const idx = projectNameList.indexOf(originProjectName);
-        projectNameList[idx] = newProjectName;
-        localStorage.setItem(projectKey, projectNameList);
+        updateItem(projectsKey, value => value === originProjectName, newProjectName);
         // If the edited project is the selected project, update the project title.
-        if(projectTitle.innerText === originProjectName)
+        if (projectTitle.innerText === originProjectName)
             projectTitle.innerText = newProjectName;
-    } else if(action === 'delete') {
+    } else if (action === 'delete') {
         const projectToBeDeleted = getProjectFromChild(e.target);
         // If the project to be deleted is the same as the selected project,
         // make Inbox be the next selected project after deleting.
         const projectName = projectToBeDeleted.dataset.project;
-        if(projectName === projectTitle.innerText) {
-            document.querySelector(`[data-project="Inbox"]`).classList.add('selected-project');
-            projectTitle.innerText = 'Inbox';
+        if (projectName === projectTitle.innerText) {
+            changeSelectedProject('Inbox', 'selected-project', projectTitle);
         }
         projectToBeDeleted.remove();
-        // Update projectNameList and localStorage.
-        const idx = projectNameList.indexOf(projectName);
-        projectNameList.splice(idx, 1);
-        localStorage.setItem(projectKey, projectNameList);
+        deleteItem(projectsKey, value => value === projectName);
     }
 });
