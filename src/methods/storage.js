@@ -42,6 +42,11 @@ function createItem(key, item) {
     updateStorage(key, items);
 }
 
+/**
+ * @param {string} key 
+ * @param {(value:Task | string) => boolean} predicate 
+ * @returns 
+ */
 function readItem(key, predicate) {
     const items = parse(key);
     return items;
@@ -59,10 +64,18 @@ function updateItem(key, predicate, item) {
     updateStorage(key, items);
 }
 
+/**
+ * @param {string} key 
+ * @param {(value:Task | string) => boolean} predicate 
+ */
 function deleteItem(key, predicate) {
     const items = parse(key);
-    const idx = items.findIndex(predicate);
-    items.splice(idx, 1);
+    let idx = items.findIndex(predicate);
+    while(idx != -1) {
+        items.splice(idx, 1);
+        idx = items.findIndex(predicate);
+    }
     updateStorage(key, items);
 }
+
 export {createItem, readItem, updateItem, deleteItem};

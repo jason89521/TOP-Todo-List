@@ -1,9 +1,13 @@
 import Swal from "sweetalert2";
 import { changeSelectedProject, createProjectElement, getProjectFromChild } from "./methods/project";
 import { createItem, deleteItem, readItem, updateItem } from "./methods/storage";
+import { resetTaskList } from "./methods/display";
 const projectTitle = document.getElementById('project-title');
 const sidebar = document.getElementById('sidebar');
+const taskList = document.getElementById('task-list');
+const addTaskLi = document.getElementById('add-task');
 const projectsKey = 'projects';
+const tasksKey = 'tasks';
 
 // Initialize the sidebar.
 initialize();
@@ -17,12 +21,14 @@ function initialize() {
             projectElement.classList.add('selected-project');
         sidebar.append(projectElement);
     });
+    resetTaskList(taskList, addTaskLi, 'Inbox');
 }
 
 // Handle click event on sidebar.
 sidebar.addEventListener('click', async e => {
     if (e.target.dataset.project) {
         changeSelectedProject(e.target.dataset.project, 'selected-project', projectTitle);
+        resetTaskList(taskList, addTaskLi, e.target.dataset.project);
         return;
     }
 
@@ -78,8 +84,10 @@ sidebar.addEventListener('click', async e => {
         const projectName = projectToBeDeleted.dataset.project;
         if (projectName === projectTitle.innerText) {
             changeSelectedProject('Inbox', 'selected-project', projectTitle);
+            resetTaskList(taskList, addTaskLi, 'Inbox');
         }
         projectToBeDeleted.remove();
         deleteItem(projectsKey, value => value === projectName);
+        deleteItem(tasksKey, value => value.projectName === projectName);
     }
 });
