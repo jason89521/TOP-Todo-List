@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./stylesheets/main.css">
     <link rel="stylesheet" href="./stylesheets/sidebar.css">
     <link rel="stylesheet" href="./stylesheets/listContainer.css">
+    <link rel="stylesheet" href="./stylesheets/form.css">
 </head>
 <body>
     <div>
@@ -44,146 +45,43 @@
                             <i class="far fa-edit"></i>
                         </button>
                     </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
-                    <li class="task">
-                        <button class="task-check">
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <div class="task-info">
-                            <span class="task-title">Title</span>
-                            <span class="task-description">Description</span>
-                            <span class="task-date">2020-12-12</span>
-                        </div>
-                        <button class="task-edit">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </li>
                     <li id="add-task">
-                        <button>
+                        <button data-action="add">
                             Add Task
                         </button>
                     </li>
                 </ul>
+                <form id="task-form">
+                    <label for="title-input">Title</label>
+                    <input type="text" id="title-input" autocomplete="off">
+
+                    <label for="description-input">Description</label>
+                    <textarea id="description-input" cols="30" rows="10"></textarea>
+
+                    <label for="date-input">Due Date</label>
+                    <input type="date" id="date-input">
+
+                    <span>Priority</span>
+                    <div id="priority-inputs">
+                        <label id="high-div">
+                            <input type="radio" id="high" value="high" name="priority" checked>
+                            High
+                        </label>
+                        <label id="medium-div">
+                            <input type="radio" id="medium" value="medium" name="priority">
+                            Medium
+                        </label>
+                        <label id="low-div">
+                            <input type="radio" id="low" value="low" name="priority">
+                            Low
+                        </label>
+                    </div>
+                </form>
             </div>
         </main>
     </div>
 
 <script src="./js/sidebar.bundle.js"></script>
+<script src="./js/listContainer.bundle.js"></script>
 </body>
 </html>
