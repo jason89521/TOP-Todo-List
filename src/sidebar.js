@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { changeSelectedProject, createProjectElement, getProjectFromChild } from "./methods/project";
-import { createItem, deleteItem, readItem, updateItem } from "./methods/storage";
+import { createItem, deleteItem, readItem, updateItem, updateItemsProperty } from "./methods/storage";
 import { resetTaskList } from "./methods/display";
 const projectTitle = document.getElementById('project-title');
 const sidebar = document.getElementById('sidebar');
@@ -74,6 +74,7 @@ sidebar.addEventListener('click', async e => {
         projectToBeEdited.dataset.project = newProjectName;
         projectToBeEdited.querySelector('span').innerText = newProjectName
         updateItem(projectsKey, value => value === originProjectName, newProjectName);
+        updateItemsProperty(tasksKey, value => value.projectName === originProjectName, 'projectName', newProjectName);
         // If the edited project is the selected project, update the project title.
         if (projectTitle.innerText === originProjectName)
             projectTitle.innerText = newProjectName;

@@ -67,6 +67,22 @@ function updateItem(key, predicate, item) {
 /**
  * @param {string} key 
  * @param {(value:Task | string) => boolean} predicate 
+ * @param {string} propertyName 
+ * @param {*} propertyValue 
+ */
+function updateItemsProperty(key, predicate, propertyName, propertyValue) {
+    const items = parse(key);
+    let idx = items.findIndex(predicate);
+    while(idx != -1) {
+        items[idx][propertyName] = propertyValue;
+        idx = items.findIndex(predicate);
+    }
+    updateStorage(key, items);
+}
+
+/**
+ * @param {string} key 
+ * @param {(value:Task | string) => boolean} predicate 
  */
 function deleteItem(key, predicate) {
     const items = parse(key);
@@ -78,4 +94,4 @@ function deleteItem(key, predicate) {
     updateStorage(key, items);
 }
 
-export {createItem, readItem, updateItem, deleteItem};
+export {createItem, readItem, updateItem, updateItemsProperty, deleteItem};
