@@ -14,6 +14,7 @@
 }
 
 #project-title{
+    overflow: auto;
     font-family: Official;
     position: sticky;
     top: 0;
@@ -43,6 +44,7 @@
 }
 
 .task-check{
+    cursor: pointer;
     padding: 0;
     min-width: 1.5em;
     height: 1.5em;
@@ -80,10 +82,16 @@
 }
 
 .task-edit{
+    cursor: pointer;
     padding: 0;
     background-color: transparent;
     border: none;
     align-self: flex-start;
+    transition: .1s;
+}
+
+.task-edit:hover{
+    transform: scale(1.5);
 }
 
 #add-task > button{
@@ -96,6 +104,11 @@
     background-color: #409eff;
     font-family: Official;
     font-size: 18px;
+    transition: .1s;
+}
+
+#add-task > button:hover{
+    transform: scale(1.25);
 }
 
 .high-priority{
