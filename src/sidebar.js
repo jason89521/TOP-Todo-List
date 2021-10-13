@@ -90,6 +90,7 @@ sidebar.addEventListener('click', async e => {
         }
         projectToBeDeleted.remove();
         deleteItem(projectsKey, value => value === projectName);
+        // Delete all tasks whose projectName is equal to the deleted project name.
         deleteItem(tasksKey, value => value.projectName === projectName);
     }
 });

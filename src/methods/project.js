@@ -1,4 +1,5 @@
 /**
+ * Add selected class to the selected project button.
  * @param {string} projectName
  * @param {string} selectedClass 
  * @param {HTMLElement} projectTitle
@@ -10,6 +11,11 @@ function changeSelectedProject(projectName, selectedClass, projectTitle) {
     projectTitle.innerText = projectName;
 }
 
+/**
+ * Create a div that is a project element.
+ * @param {string} projectName 
+ * @returns {HTMLDivElement}
+ */
 function createProjectElement(projectName) {
     const project = document.createElement('div');
     project.classList.add('sidebar-btn');
@@ -31,6 +37,7 @@ function createProjectElement(projectName) {
 }
 
 /**
+ * Return a project element from its child.
  * @param {HTMLElement} child 
  */
 function getProjectFromChild(child){

@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import Task from "./methods/task";
-import { createItem, readItem, updateItem, updateItemsProperty, deleteItem } from "./methods/storage";
+import { createItem, readItem, updateItem, deleteItem } from "./methods/storage";
 import { resetTaskList } from "./methods/display";
 const tasksKey = 'tasks'
 const taskList = document.getElementById('task-list');
@@ -25,6 +25,7 @@ taskList.addEventListener('click', async e => {
     } else if (action === 'edit') {
         const liToBeEdited = getLiFromChild(e.target);
         const id = parseInt(liToBeEdited.dataset.id, 10);
+        // Reset the form with the value of origin task.
         const originTask = readItem(tasksKey, value => value.id === id)[0];
         form.elements['title'].value = originTask.title;
         form.elements['description'].value = originTask.description;
@@ -77,6 +78,7 @@ addTaskLi.addEventListener('click', async e => {
 })
 
 /**
+ * Return a Li element from child.
  * @param {HTMLElement} child 
  */
 function getLiFromChild(child) {

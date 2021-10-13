@@ -16,6 +16,7 @@ function taskReviver(key, value) {
 }
 
 /**
+ * Parse the data in local storage.
  * @param {string} key 
  * @returns {Task[] | string[]}
  */
@@ -33,6 +34,7 @@ function updateStorage(key, items) {
 }
 
 /**
+ * Push an item to the localStorage with key.
  * @param {string} key 
  * @param {Task | string} item 
  */
@@ -43,6 +45,8 @@ function createItem(key, item) {
 }
 
 /**
+ * Get items that satisfy the predicate.
+ * If predicate is undefined, return all items.
  * @param {string} key 
  * @param {(value:Task | string) => boolean} predicate 
  * @returns 
@@ -57,6 +61,7 @@ function readItem(key, predicate) {
 }
 
 /**
+ * Update one item that satisfy predicate.
  * @param {string} key 
  * @param {(value:Task | string) => boolean} predicate 
  * @param {Task | string} item 
@@ -69,6 +74,7 @@ function updateItem(key, predicate, item) {
 }
 
 /**
+ * Update the propety of items that satisfy predicate.
  * @param {string} key 
  * @param {(value:Task | string) => boolean} predicate 
  * @param {string} propertyName 
@@ -85,6 +91,7 @@ function updateItemsProperty(key, predicate, propertyName, propertyValue) {
 }
 
 /**
+ * Delete all items that satisfy predicate.
  * @param {string} key 
  * @param {(value:Task | string) => boolean} predicate 
  */
