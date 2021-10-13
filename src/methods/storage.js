@@ -49,6 +49,10 @@ function createItem(key, item) {
  */
 function readItem(key, predicate) {
     const items = parse(key);
+    if(predicate !== undefined) {
+        const result = items.filter(predicate);
+        return result;
+    }
     return items;
 }
 

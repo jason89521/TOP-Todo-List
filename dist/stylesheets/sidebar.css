@@ -10,7 +10,7 @@
     background-color: #a7d5fd;
     gap: 1em;
     padding: 1em 2em;
-    width: 15em;
+    min-width: 15em;
 }
 
 #add-project{

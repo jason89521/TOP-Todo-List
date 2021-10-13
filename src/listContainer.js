@@ -24,6 +24,12 @@ taskList.addEventListener('click', async e => {
         deleteItem(tasksKey, value => value.id === id);
     } else if (action === 'edit') {
         const liToBeEdited = getLiFromChild(e.target);
+        const id = parseInt(liToBeEdited.dataset.id, 10);
+        const originTask = readItem(tasksKey, value => value.id === id)[0];
+        form.elements['title'].value = originTask.title;
+        form.elements['description'].value = originTask.description;
+        form.elements['date'].value = originTask.date;
+        form.elements['priority'].value = originTask.priority;
         const swalResult = await Swal.fire({
             html: form,
             preConfirm: () => {
@@ -38,12 +44,12 @@ taskList.addEventListener('click', async e => {
             const date = form.elements['date'].value;
             const priority = form.elements['priority'].value;
             const projectName = projectTitle.innerText;
-            const id = parseInt(liToBeEdited.dataset.id, 10);
             const task = new Task(title, description, date, priority, projectName, id);
             taskList.insertBefore(task.createTaskElement(), liToBeEdited);
             liToBeEdited.remove();
             updateItem(tasksKey, value => value.id === id, task);
         }
+        form.reset();
     }
 });
 
@@ -67,6 +73,7 @@ addTaskLi.addEventListener('click', async e => {
         taskList.insertBefore(newTask.createTaskElement(), addTaskLi);
         createItem(tasksKey, newTask);
     }
+    form.reset();
 })
 
 /**
