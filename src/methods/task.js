@@ -22,7 +22,7 @@ export default class Task {
         const taskInfo = document.createElement('div');
         const editBtn = document.createElement('button');
         li.dataset.id = this.id;
-        li.className = 'task';
+        li.className = `task ${this.priority}-priority`;
         checkBtn.className = 'task-check';
         taskInfo.className = 'task-info';
         editBtn.className = 'task-edit';
