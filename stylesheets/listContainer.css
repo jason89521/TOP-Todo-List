@@ -96,3 +96,15 @@
     font-family: Official;
     font-size: 18px;
 }
+
+.high-priority{
+    border: 3px solid #ff8181;
+}
+
+.medium-priority{
+    border: 3px solid #ffee00;
+}
+
+.low-priority{
+    border: 3px solid #33ff33;
+}
