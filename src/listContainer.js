@@ -9,6 +9,7 @@ const addTaskLi = document.getElementById('add-task');
 const form = document.getElementById('task-form');
 // Initialize
 form.remove();
+form.style.display = '';
 form.addEventListener('keydown', e => {
     if (e.target.tagName.toLowerCase() === 'input' && e.key.toLowerCase() === 'enter')
         e.preventDefault();
